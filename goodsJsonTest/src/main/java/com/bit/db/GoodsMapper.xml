@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="goods">
+  <select id="selectAll" resultType="goodsVo">
+    select * from goods ORDER BY no
+  </select>
+  
+  <select id="detail" resultType="goodsVo">
+    SELECT * FROM goods WHERE no=#{no} ORDER BY no
+  </select>
+  
+  <insert id="insert" parameterType="goodsVo">
+  	INSERT INTO goods VALUES(#{no}, #{item}, #{price}, #{qty}, #{fname})
+  </insert>
+</mapper>
