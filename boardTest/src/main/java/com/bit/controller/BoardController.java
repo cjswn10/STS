@@ -1,5 +1,6 @@
 package com.bit.controller;
 
+import java.io.File;
 import java.io.FileOutputStream;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,18 @@ public class BoardController {
 	public void setDao(BoardDAO dao) {
 		this.dao = dao;
 	}
+	
+	
+	@RequestMapping("/down.do")
+	public ModelAndView down(String fname, HttpServletRequest request) {
+		String path = request.getRealPath("resources/upload");
+		File file = new File(path + "/" + fname);
+		ModelAndView mv = new ModelAndView("down", "df", file);
+		//down : servlet-context에서 정해준 id
+		//df : DownloadView에서 정해준 파일이름
+		return mv;
+	}
+	
 	
 	@RequestMapping("/listBoard.do")
 	public ModelAndView listAll() {

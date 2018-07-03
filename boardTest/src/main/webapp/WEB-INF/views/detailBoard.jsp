@@ -16,7 +16,7 @@
 작성일 : ${b.regdate}<br>
 조회수 : ${b.hit }<br>
 내용 <br><textarea rows="10" cols="60" readonly="readonly">${b.content }</textarea><br>
-첨부파일 : ${b.fname}<br>
+첨부파일 : <a href="down.do?fname=${b.fname }">${b.fname}</a><br>
 ip주소 : ${b.ip }<br>
 
 <a href="insertBoard.do?no=${b.no }">답글</a>&nbsp;&nbsp;
