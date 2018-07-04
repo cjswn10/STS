@@ -52,14 +52,14 @@ public class InsertMemberController {
 		mail.setText("["+aNum+"]인증번호를 화면에 입력하세요");
 		mail.setTo(email);
 		
-		String str = "전송";
 		try {
 			mailSender.send(mail);
-			str += "완료";
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
 		}
+		
+		String str = aNum + "";
 		return str;
 	}
 }

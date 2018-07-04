@@ -14,7 +14,7 @@ $(function() {
 			url: "authEmail.do",
 			data : {aNum: aNum, email: email},
 			success: function(data){
-				console.log(data);
+				alert("data:" + data);
 				var userNum = prompt("인증번호를 입력하세요", "");
 				
 				var str = "인증번호가 일치합니다";
