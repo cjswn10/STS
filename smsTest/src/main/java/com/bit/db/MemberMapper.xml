@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="members">
+  <select id="selectAll" resultType="memberVo">
+    SELECT * FROM members ORDER BY id
+  </select>
+  
+  <insert id="insert" parameterType="memberVo">
+  	INSERT INTO members VALUES(#{id}, #{pwd}, #{name}, #{tel})
+  </insert>
+  
+  <select id="login" resultType="memberVo">
+  	SELECT * FROM members WHERE id=#{id} AND pwd=#{pwd}
+  </select>
+ </mapper>
