@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="account">
+  <select id="getAccount" resultType="accountVo">
+  	SELECT * FROM account WHERE name=#{name}
+  </select>
+  
+  <update id="withdraw">
+  	UPDATE account SET balance=balance-#{amount} WHERE name=#{from}
+  </update>
+  
+  <update id="deposit">
+  	UPDATE account SET balance=balance+#{amount} WHERE name=#{to}
+  </update>
+</mapper>
