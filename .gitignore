@@ -13,5 +13,10 @@ local.properties
 .recommenders/
 .project
 .classpath
-Servers
 Servers/
+target/
+
+*.class
+*.log
+*.dll
+*.exe
