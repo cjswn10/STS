@@ -7,8 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="login.do">로그인</a><br>
-<a href="listBoard.do">글목록</a><br>
-<a href="insertBoard.do">글쓰기</a><br>
+	<h2>로그인</h2><hr>
+	<form action="login.do" method="post">
+		아이디: <input type="text" name="id"><br>
+		비밀번호: <input type="text" name="pwd"><br>
+		<input type="submit" value="로그인">
+		<input type="reset" value="취소">
+	</form>
 </body>
 </html>

@@ -8,6 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<c:if test="${not empty id}">
+		${id }님 환영합니다.
+	</c:if>
+	<br>	
    <table>
       <tr>
          <td>글번호</td>
