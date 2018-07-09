@@ -12,6 +12,13 @@
 		${id }님 환영합니다.
 	</c:if>
 	<br>	
+	<h2>게시판</h2><hr>
+	<form action="listBoard.do">
+		<input type="text" name="keyword">
+		<input type="submit" value="검색">
+	</form>
+	
+	<a href="listBoard.do?id=${id }">내글보기</a>
    <table>
       <tr>
          <td>글번호</td>

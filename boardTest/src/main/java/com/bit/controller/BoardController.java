@@ -2,6 +2,8 @@ package com.bit.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -39,9 +41,18 @@ public class BoardController {
 	
 	
 	@RequestMapping("/listBoard.do")
-	public ModelAndView listAll() {
+	public ModelAndView listAll(String id, String keyword) {
 		ModelAndView mv = new ModelAndView("listBoard");
-		mv.addObject("list", dao.listAll());
+		Map map = new HashMap();
+		map.put("id", id);
+		map.put("keyword", keyword);
+		
+		if(id == null) {
+			mv.addObject("list", dao.listAll(map));
+		} else {
+			mv.addObject("list", dao.myList(id));
+		}
+		
 		return mv;
 	}
 	

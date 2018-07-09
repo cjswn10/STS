@@ -32,14 +32,24 @@ public class BoardManager {
 		}
 	}
 
-	public static List<BoardVO> listAll() {
+	public static List<BoardVO> listAll(Map map) {
 		List<BoardVO> list = null;
 		SqlSession session = factory.openSession();
-		list = session.selectList("board.selectAll");
+		list = session.selectList("board.selectAll", map);
 		session.close();
 		return list;
 	}
 
+	public static List<BoardVO> myList(String id) {
+		List<BoardVO> list = null;
+		Map map = new HashMap();
+		map.put("id", id);
+		SqlSession session = factory.openSession();
+		list = session.selectList("board.myList", map);
+		session.close();
+		return list;
+	}
+	
 	public static int insert(BoardVO b, HttpServletRequest request) {
 		/*
 		 * 답글일 때의 처리
