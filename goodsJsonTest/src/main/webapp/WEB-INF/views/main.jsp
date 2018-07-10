@@ -1,44 +1,171 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<style type="text/css">
+.item {
+	border: solid 2px pink;
+	/*float: left;*/
+	display: inline-block;
+	margin: 10px;
+	border-radius: 15px;
+}
+
+#prev, #next {
+	/*float: left;*/
+	width: 50;
+	display: inline-block;
+}
+
+#list {
+	display: inline-block;
+	margin: 20px 0 0 0px;
+}
+
+#cart_item {
+}
+</style>
+
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 $(function() {
-	$("#btnRead").click(function() {
+	var arr;
+	var cart_arr = [];
+	
+	var pageSIZE = 4;
+	var totalRecord = 1;
+	var totalPage = 1;
+	var currentPage = 1;
+	
+	
+	//현재페이지에 보여줄 상품의 노드를 생성한다.
+	var mkNode = function() {
+		$("#prev").show();
+		$("#next").show();
+		
+		if(currentPage <= 1){
+			$("#prev").hide();
+		}
+		
+		if(currentPage >= totalPage){
+			$("#next").hide();
+		}
+		
+		$("#list").empty();
+		
+		var start = (currentPage - 1) * pageSIZE;
+		//시작페이지
+		var arr2 = arr.slice(start, start + pageSIZE);
+		//보이는 상품들
+		
+		
+		$.each(arr2, function(idx, g) {
+			var d = $("<div></div>");
+			$(d).addClass("cart_item");
+			$(d).attr("no", g.no);
+			var chk = $("<input></input>").attr("type", "checkbox");
+			//$(chk).attr("idx", idx);
+			
+			$(chk).change(function() {
+				var c = $(this).is(":checked");
+				//var c = $(this).attr("checked");
+				//if(c == "checked") {
+				if(c) {
+					var cd = $(d).clone();
+					$("#cart").append(cd);
+					
+					//var idx = $(this).attr("idx");
+					//cart_arr.push(arr2[idx]);
+				} else {
+					var pd = $(this).parent();
+					var no = $(pd).attr("no");
+					delCart(no);					
+				}
+			})
+			
+			$(d).append(chk);
+			$("<br>").appendTo(d);
+			
+			$(d).addClass("item");
+			var img = $("<img></img>").attr({
+				src: "resources/img/"+g.fname,
+				width: "200"
+				
+			});
+			$(d).append(img);
+			$("<p></p>").html(g.item).appendTo(d);
+			$("<p></p>").html(g.price).appendTo(d);
+			var input_qty = $("<input type='number' value='1'>");
+			var p_qty = $("<p></p>");
+			var span_qty = $("<span></span>").html("("+g.qty+")");
+			$(p_qty).append(input_qty, span_qty);
+			$(d).append(p_qty);
+			
+			$("<p></p>").html(g.item).appendTo(d);
+			$("#list").append(d);
+		});
+		
+	};//mkNode
+	
+	//장바구니에서 상품을 삭제하기 위한 함수
+	//매개변수로 상품번호를 전달 받아 해당상품을 cart에서 제거했다
+	var delCart = function(no) {
+		var selArr = $("#cart").find(".item");
+		$.each(selArr, function(i, c) {
+			var cno = $(c).attr("no");
+			if(cno == no) {
+				$(c).remove();
+				return;
+			}
+		
+		})
+		
+	};//delCart
+	
+	
+	
+	//Ajax통신하여 서버로부터 모든 상품의 목록을 읽어와
+	//배열 arr에 담고
+	//전체레코드수와 전체페이지를 계산하고 
+	//현재페이지(1페이지)에 보여줄 상품노드를 생성하여 보여준다.
+	var listGoods = function() {
 		$.ajax("listGoods.do", {
 			success : function(data) {
-				$("#tb").html("");
-				var list = eval("(" + data +")");
-				$.each(list, function(i, g) {
-					var tr = $("<tr></tr>").appendTo($("#tb"));
-					var td1 = $("<td></td>").html(g.item);
-					var td2 = $("<td></td>").html(g.price);
-					tr.append(td1, td2);
-					
-					$(tr).mouseover(function() {
-						//var idx = $(this).attr("idx");
-		                //var g = list[idx];
-						
-		                $("#detail").empty();
-		                
-		                var img = $("<img/>").attr({
-		                	src: "resources/img/" + g.fname,
-		                	width: "200px"
-		                });
-		                var br = $("<br>");
-		                
-		                $("#detail").append(img, br);
-		                $("#detail").append("상품번호: ", g.no, $("<br>"));
-		                $("#detail").append("상품명: ", g.item, $("<br>"));
-		                $("#detail").append("가 격: ", g.price, $("<br>"));
-		                $("#detail").append("수 량: ", g.qty, $("<br>"));
-					})
-				})
+				arr = eval("(" + data +")");
+				totalRecord = arr.length;
+				totalPage = Math.ceil(totalRecord / pageSIZE); 
+				//ceil : 올림수
+				
+				mkNode();
+			}
+		});
+		
+	};	//listGoods
+	
+	listGoods();
+	
+	//이전페이지를 보여주기 위한 이벤트처리
+	$("#prev").click(function() {
+		$.ajax("listGoods.do", {
+			success: function() {
+				currentPage = currentPage - 1;
+				mkNode();
 			}
 		});
 	});
+
+	//다음페이지를 보여주기 위한 이벤트처리
+	$("#next").click(function() {
+		$.ajax("listGoods.do", {
+			success: function() {
+				currentPage = currentPage + 1;
+				mkNode();
+			}
+		});
+	});
+	
+	
 });
 
 </script>
@@ -46,22 +173,19 @@ $(function() {
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>${title }</h2>
+
+	<div id="prev"><img src="resources/img/left.png"></div>
+	<div id="list"></div>
+	<div id="next"><img src="resources/img/right.png"></div>
+	
 	<hr>
-	<button id="btnRead">상품목록 읽어오기</button>
-	<table border="1" width="80%">
-		<thead>
-		<tr>
-			<th>상품명</th>
-			<th>가 격</th>
-		</tr>
-		</thead>
-		<tbody id="tb">
-		</tbody>
-	</table>
+	<h2>장바구니</h2>
+	<div id="cart"></div>
 	
-	<div id="detail"></div>
-	
-	<a href="insertGoods.do">상품등록</a>
+	<!-- 
+	 <a href="insertGoods.do">상품등록</a>
+	 -->
+	 
+	 
 </body>
 </html>
