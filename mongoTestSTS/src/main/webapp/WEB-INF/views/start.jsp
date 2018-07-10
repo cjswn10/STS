@@ -46,7 +46,7 @@ $(function() {
 	$("#search").click(function() {
 		$.ajax({
 			url: "search.do",
-			success : function() {
+			success : function(data) {
 				
 			}
 		})

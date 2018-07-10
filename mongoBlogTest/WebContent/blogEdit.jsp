@@ -17,7 +17,7 @@
 <%
 	String id = request.getParameter("id");
 	String action = "show_form";
-	request.setCharacterEncoding("EUC-KR");
+	request.setCharacterEncoding("utf-8");
 
 	if(request.getParameter("title") != null)
 	{
@@ -57,8 +57,8 @@
 		title = (String)obj.get("title");
 		content = (String)obj.get("content");
 		
-		out.println(title);
-		out.println(content);
+		//out.println(title);
+		//out.println(content);
 		
 		mongo.close();
 	} catch (Exception e) {

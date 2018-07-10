@@ -11,6 +11,15 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="style.css" />
+<script type="text/javascript">
+	function confirmDelete(id) {
+		var re = confirm("Are you sure you want to delete this articles");
+		if(re) {
+			location.href = "blogDelete.jsp?id="+id;
+		}
+	}
+</script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -43,8 +52,8 @@
 			<table class="articles" cellpadding="0" cellspacing="0">
 				<thead>
 					<tr>
-						<th width="55%">Title</th>
-						<th width="27%">Created at</th>
+						<th width="50%">Title</th>
+						<th width="25%">Created at</th>
 						<th width="*">Action</th>
 					</tr>
 				</thead>
@@ -57,9 +66,9 @@
 						<td><%=ob.get("title")%></td>
 						<td><%=ob.get("saved_at")%></td>
 						<td>
-						<a href="blogDetail.jsp?id=<%=ob.get("_id")%>">View</a>
-						<a href="blogEdit.jsp?id=<%=ob.get("_id")%>">Edit</a>
-						
+							<a href="blogDetail.jsp?id=<%=ob.get("_id")%>">View</a>
+							<a href="blogEdit.jsp?id=<%=ob.get("_id")%>">Edit</a>
+							<a href="#" onclick="confirmDelete('<%=ob.get("_id")%>')">Delete</a>
 						</td>
 					</tr>
 					<%
