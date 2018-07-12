@@ -23,7 +23,26 @@
 	margin: 20px 0 0 0px;
 }
 
-#cart_item {
+.cart_item {
+	border: solid 2px pink;
+	/*float: left;*/
+	display: inline-block;
+	margin: 10px;
+	border-radius: 15px;
+}
+
+#cart{
+	display: inline-block;
+}
+
+#order{
+	display: inline-block;
+	margin-right: 50px;
+}
+
+#orderBtn {
+	width: 200px;
+	height: 50px;
 }
 </style>
 
@@ -37,6 +56,9 @@ $(function() {
 	var totalRecord = 1;
 	var totalPage = 1;
 	var currentPage = 1;
+	
+	//cart에 담길 상품의 인덱스를 증가시키기 위한 변수
+	var i = 0;
 	
 	
 	//현재페이지에 보여줄 상품의 노드를 생성한다.
@@ -69,11 +91,22 @@ $(function() {
 			
 			$(chk).change(function() {
 				var c = $(this).is(":checked");
-				//var c = $(this).attr("checked");
-				//if(c == "checked") {
+				
 				if(c) {
 					var cd = $(d).clone();
+					
+					$(cd).find(".qty").attr("name", "items["+i+"].qty");
+					$(cd).find(".no").attr("name", "items["+i+"].no");
+					
+					
+					var total = eval($("#total").val());
+					$("#total").val( total + eval($(cd).find(".price").html()) * eval( $(cd).find(".qty").val() ) );
+					
+					
 					$("#cart").append(cd);
+					
+					i++;
+					
 					
 					//var idx = $(this).attr("idx");
 					//cart_arr.push(arr2[idx]);
@@ -95,14 +128,15 @@ $(function() {
 			});
 			$(d).append(img);
 			$("<p></p>").html(g.item).appendTo(d);
-			$("<p></p>").html(g.price).appendTo(d);
-			var input_qty = $("<input type='number' value='1'>");
+			$("<p class='price'></p>").html(g.price).appendTo(d);
+			var input_qty = $("<input class='qty' type='number' value='1'>");
 			var p_qty = $("<p></p>");
 			var span_qty = $("<span></span>").html("("+g.qty+")");
 			$(p_qty).append(input_qty, span_qty);
 			$(d).append(p_qty);
 			
-			$("<p></p>").html(g.item).appendTo(d);
+			$("<input class='no' type='number'>").val(g.no).appendTo(d);
+			//$("<p></p>").html(g.item).appendTo(d);
 			$("#list").append(d);
 		});
 		
@@ -165,6 +199,9 @@ $(function() {
 		});
 	});
 	
+	/////////////////////////////////////////////////////////////////////
+	
+		
 	
 });
 
@@ -179,13 +216,19 @@ $(function() {
 	<div id="next"><img src="resources/img/right.png"></div>
 	
 	<hr>
-	<h2>장바구니</h2>
-	<div id="cart"></div>
-	
-	<!-- 
-	 <a href="insertGoods.do">상품등록</a>
-	 -->
-	 
-	 
+	<h3>장바구니</h3>
+	<form action="insertOrders.do" method="post">
+		<div id="cart"></div>
+		아이디 : <input type="text" name="id" value="111"><br>
+		배송지 : <input type="text" name="addr"><br>
+		총 구매금액 : <input type="text" name="total" id="total" value="0"><br>
+		<input type="submit" value="주문">
+	</form>
+<!-- 
+	<div id="order">
+		총 구입금액<br>
+		<input type="button" id="orderBtn" value="주문하기">
+	</div>
+ -->
 </body>
 </html>

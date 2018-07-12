@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bit.db.GoodsManager;
 import com.bit.vo.GoodsVO;
+import com.bit.vo.OrderInfo;
 
 @Repository
 public class GoodsDAO {
@@ -19,5 +20,9 @@ public class GoodsDAO {
 	
 	public int insert(GoodsVO g) {
 		return GoodsManager.insert(g);
+	}
+	
+	public int insertOrder(OrderInfo info) {
+		return GoodsManager.insertOrders(info);
 	}
 }

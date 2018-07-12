@@ -14,4 +14,24 @@
   <insert id="insert" parameterType="goodsVo">
   	INSERT INTO goods VALUES(#{no}, #{item}, #{price}, #{qty}, #{fname})
   </insert>
+
+
+
+<!-- goods_orders -->  
+  <insert id="insertOrders">
+  	INSERT INTO goods_orders VALUES(#{no}, #{id}, #{total}, #{addr}, sysdate)
+  </insert>
+  
+ <!-- orders_detail -->
+ 	<insert id="insertDetail">
+ 		INSERT INTO orders_detail VALUES(seq_od.nextval, #{gno}, #{qty}, #{ono})
+ 	</insert>
+  
+	<select id="nextOrdersNo" resultType="java.lang.Integer">
+		SELECT nvl(max(no), 0)+1 FROM goods_orders
+	</select>
+	
+	<update id="downQty">
+		UPDATE goods SET qty = qty - #{qty} WHERE no = #{gno}
+	</update>
 </mapper>
