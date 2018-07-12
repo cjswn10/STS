@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+	body {font-size: 13px;}
+	div#contentarea{ width: 650px;}
+</style>
+<link rel="stylesheet" href="style.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$.getJSON("/blogList", function(data){
+			$.each(data, function(index, item) {
+				var tr = $("<tr></tr>");
+				var td1 = $("<td></td>").html(item.title);
+				var td2 = $("<td></td>").html(item.saved_at);
+				var a1 = $("<a></a>").html("View").attr("href", "blogDetail.html?article_id="+item._id);
+				var a1 = $("<a></a>").html("Update").attr("href", "blogEdit.html?article_id="+item._id);
+				var a1 = $("<a></a>").html("Delete").attr("href", "blogDelete.html?article_id="+item._id);
+				var td3 = $("<td></td>").append(a1).append("&nbsp;&nbsp;").append(a2).append("&nbsp;&nbsp;").append(a3);
+				$(tr).append(td1).append(td2).append(td3);
+				$("#tb").append(tr);
+			});
+		});
+	});
+
+</script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="contentarea">
+		<div id="innercontentarea">
+			<h1>Dashboard</h1><br><br>
+			<p align="right"><a href="blogInsert.html">Write</a></p>
+			<table class="articles" cellpadding="0" cellspacing="0">
+				<thead>
+					<tr>
+						<th width="50%">Title</th>
+						<th width="25%">Created at</th>
+						<th width="*">Action</th>
+					</tr>
+				</thead>
+				<tbody id="tb">
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

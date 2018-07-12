@@ -15,9 +15,9 @@
 </head>
 <body>
 <%
+	request.setCharacterEncoding("utf-8");
 	String id = request.getParameter("id");
 	String action = "show_form";
-	request.setCharacterEncoding("utf-8");
 
 	if(request.getParameter("title") != null)
 	{
