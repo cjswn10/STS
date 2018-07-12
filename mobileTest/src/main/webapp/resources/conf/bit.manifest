@@ -1,0 +1,14 @@
+CACHE MANIFEST
+
+#캐쉬할 파일 현재manifest파일 경로 기준
+CACHE:
+../js/bit.js
+../css/bit.css
+../img/earth.jpg
+../img/moon.png
+
+#다른 리소스 파일은 서버에서 받음
+NETWORK:
+*
+
+FALLBACK:
