@@ -1,4 +1,4 @@
-.metadata
+.metadata/
 bin/
 tmp/
 *.tmp
@@ -13,8 +13,14 @@ local.properties
 .recommenders/
 .project
 .classpath
+.springBeans
 Servers/
 target/
+m2e-wtp/
+META-INF/
+
+pom.properties
+MANIFEST.MF
 
 *.class
 *.log
