@@ -12,6 +12,7 @@
 
 <a href="main.do">시작</a><br>
 <a href="board.do">게시판</a>
+<a href="board2.do">게시판2</a>
 
 </body>
 </html>

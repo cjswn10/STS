@@ -31,40 +31,5 @@ public class GoodsManager {
 		session.close();
 		return list;
 	}
-	
-	public static GoodsVO getGoods(int no) {
-		GoodsVO g = new GoodsVO();
-		Map map = new HashMap();
-		map.put("no", no);
-		SqlSession session = factory.openSession();
-		g = session.selectOne("goods.detail", map);
-		return g;
-	}
-	
-	public static int insert(GoodsVO g) {
-		int re = -1;
-		SqlSession session = factory.openSession(true);
-		re = session.insert("goods.insert", g);
-		session.close();
-		return re;
-	}
-	
-	
-	public static int update(GoodsVO g) {
-		int re = -1;
-		SqlSession session = factory.openSession(true);
-		re = session.update("goods.update", g);
-		session.close();
-		return re;
-	}
-	
-	public static int delete(int no) {
-		int re = -1;
-		Map map = new HashMap();
-		map.put("no", no);
-		SqlSession session = factory.openSession(true);
-		re = session.delete("goods.delete", map);
-		session.close();
-		return re;
-	}
+
 }

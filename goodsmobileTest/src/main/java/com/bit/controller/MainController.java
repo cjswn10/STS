@@ -13,4 +13,22 @@ public class MainController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("/main2.do")
+	public ModelAndView listGoods2() {
+		ModelAndView mv = new ModelAndView();
+		return mv;
+	}
+	
+	@RequestMapping("/board.do")
+	public ModelAndView boartList() {
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
+	@RequestMapping("/board2.do")
+	public ModelAndView boartList2() {
+		ModelAndView mv = new ModelAndView();
+		return mv;
+	}
 }

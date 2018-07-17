@@ -13,20 +13,4 @@ public class GoodsDAO {
 	public List<GoodsVO> listAll() {
 		return GoodsManager.listAll();
 	}
-	
-	public GoodsVO getGoods(int no) {
-		return GoodsManager.getGoods(no);
-	}
-	
-	public int insert(GoodsVO g) {
-		return GoodsManager.insert(g);
-	}
-	
-	public int update(GoodsVO g) {
-		return GoodsManager.update(g);
-	}
-	
-	public int delete(int  no) {
-		return GoodsManager.delete(no);
-	}
 }

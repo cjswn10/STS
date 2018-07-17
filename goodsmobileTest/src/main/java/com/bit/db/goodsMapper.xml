@@ -6,19 +6,4 @@
 		SELECT * FROM goods ORDER BY no
 	</select>
 	
-	<select id="detail" resultType="goodsVo">
-		SELECT * FROM goods WHERE no=#{no}
-	</select>
-	
-	<insert id="insert" parameterType="goodsVo">
-		INSERT INTO goods VALUES(#{no}, #{item}, #{price}, #{qty}, #{fname})
-	</insert>
-	
-	<update id="update" parameterType="goodsVo">
-		UPDATE goods SET item=#{item}, price=#{price}, qty=#{qty}, fname=#{fname} WHERE no=#{no}
-	</update>
-	
-	<delete id="delete">
-		DELETE goods WHERE no=#{no}
-	</delete>
 </mapper>

@@ -61,38 +61,42 @@ $(function() {
 </head>
 <body>
 <div data-role="page" id="mainPage">
-		<div data-role="header">
-			<h1>상품 목록</h1>
-		</div>
+	<div data-role="header">
+		<h1>상품 목록</h1>
+	</div>
 
-		<div data-role="content">
-			<ul data-role="listview" id="list">
-			</ul>
-		</div>
-		
-		<div data-role="footer" data-position="fixed">연주상점</div>
+	<div data-role="content">
+		<ul data-role="listview" id="list">
+			<li><a href="#"><img width="100" src="resources/icons/ball1.jpg"></a></li>
+			<li><a href="#"><img width="100" src="resources/icons/cloth1.jpg"></a></li>
+			<li><a href="#"><img width="100" src="resources/icons/shoe1.jpg"></a></li>
+			<li><a href="#"><img width="100" src="resources/icons/stock1.jpg"></a></li>
+		</ul>
+	</div>
+	
+	<div data-role="footer" data-position="fixed">연주상점</div>
 </div>
 	
 <div data-role="page" id="detailView">
-		<div data-role="header" >상품목록</div>
-		
-		<div data-role="content">
-			<table>
-				<tr>
-					<td>
-						<img  id="detailImg" src="resources/img/ball1.jpg" width="200" height="200">					
-					</td>
-						
-					<td>
-						상품명 :<span id="detailItem"></span> <br>
-						가격 :<span id="detailPrice"></span> <br>
-						수량 :<span id="detailQty"></span> <br>
-					</td>
-				</tr>
-			</table>
-		</div>
-		
-		<div data-role="footer" data-position="fixed">연주상점</div>
+	<div data-role="header" >상품목록</div>
+	
+	<div data-role="content">
+		<table>
+			<tr>
+				<td>
+					<img  id="detailImg" src="resources/img/ball1.jpg" width="200" height="200">					
+				</td>
+					
+				<td>
+					상품명 :<span id="detailItem"></span> <br>
+					가격 :<span id="detailPrice"></span> <br>
+					수량 :<span id="detailQty"></span> <br>
+				</td>
+			</tr>
+		</table>
 	</div>
+	
+	<div data-role="footer" data-position="fixed">연주상점</div>
+</div>
 </body>
 </html>
