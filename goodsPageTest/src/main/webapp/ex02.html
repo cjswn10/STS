@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+		content="width=device-width,
+		initial-scale=1.0,
+		maximum-scale=1.0,
+		minimum-scale=1.0,
+		user-scalable=no">
+
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<script type="text/javascript">
+$(function() {
+	if(window.orientation == 0) {
+		//처음 열었을때 세로모드일 경우
+		$("#backImg").attr("src", "resources/img/j2.jpg");
+	} else {
+		//가로모드
+		$("#backImg").attr("src", "resources/img/gong.jpg");
+	}
+	
+	
+	$(window).orientationchange(function(event){
+		if(event.orientation == 'portrait') {
+			//화면을 세로모드로 바꿨을 경우
+			$("#backImg").attr("src", "resources/img/j3.jpg");
+		} else {
+			//가로모드일 경우
+			$("#backImg").attr("src", "resources/img/jeon.jpg");
+		}
+	})
+});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+<div data-role="page" class="page">
+ 	<div data-role="header">
+ 		<h2></h2>
+ 	</div>
+ 
+ 	<div data-role="content">
+ 		<img id="backImg" src=""/>
+ 	</div>
+ 	
+ 	<div data-role="footer">
+ 	</div>
+</div>
+</body>
+</html>

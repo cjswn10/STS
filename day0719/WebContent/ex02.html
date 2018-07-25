@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+   content="with=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+minimum-scale=1.0,
+user-scalable=no">
+
+<link rel="shortcut icon" href="icon_heart.png">
+<link rel="apple-touch-icon" href="icon_heart.png">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#a").tap(function() {
+			$("#info").append("탭 이벤트 발생<br/>");
+		});
+		
+		$("#a").taphold(function() {
+			$("#info").append("길게 눌렀어요<br/>");
+		});
+		
+		$("#a").swipe(function() {
+			$("#info").append("밀었어요<br/>");
+		});
+		
+		$("#a").swipeleft(function() {
+			$("#info").append("왼쪽으로 밀었어요<br/>");
+		});
+		
+		$("#a").swiperight(function() {
+			$("#info").append("오른쪽으로 밀었어요<br/>");
+		});
+	})
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+ <div data-role="page">
+ 	<div data-role="header">
+ 		<h2>모바일 이벤트 연습</h2>
+ 	</div>
+ 
+ 	<div data-role="content">
+ 		<div id="a" style="background-color:orange; height: 150px">
+ 		
+ 		</div>
+ 		<div id="info">
+ 		
+ 		</div>
+ 	</div>
+ 	
+ 	<div data-role="footer">
+ 	</div>
+ </div>
+</body>
+</html>

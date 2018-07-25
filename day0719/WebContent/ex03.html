@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+   content="with=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+minimum-scale=1.0,
+user-scalable=no">
+
+<link rel="shortcut icon" href="icon_heart.png">
+<link rel="apple-touch-icon" href="icon_heart.png">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	 var arr = $(".page");
+     var lastIndex = arr.length - 1;
+
+     $.each(arr, function(idx, p) {
+
+        $(this).attr("idx", idx);
+     });
+
+     $(arr).swipeleft(function() {
+        var i = $(this).attr("idx");
+        i++;
+
+        if (i > lastIndex) {
+           i = 0;
+        }
+
+        var nextId = "#" + $(arr[i]).attr("id");
+        $.mobile.changePage(nextId, {
+           transition : "silde"
+        });
+     });
+
+     $(arr).swiperight(function() {
+        var i = $(this).attr("idx");
+        i--;
+
+        if (i < 0) {
+           i = lastIndex;
+        }
+
+        var nextId = "#" + $(arr[i]).attr("id");
+        $.mobile.changePage(nextId, {
+           transition : "silde",
+           reverse : true
+        });
+     });
+
+	/*
+	$("#orangePage").swipeleft(function() {
+		$.mobile.changePage("#bluePage", {transition: "slide"});
+	});
+	
+	$("#orangePage").swiperight(function() {
+		$.mobile.changePage("#greenPage", {transition: "slide", reverse:true});
+	});
+	
+	$("#bluePage").swipeleft(function() {
+		$.mobile.changePage("#greenPage", {transition: "slide"});
+	});
+	
+	$("#bluePage").swiperight(function() {
+		$.mobile.changePage("#orangePage", {transition: "slide", reverse:true});
+	});
+	
+	$("#greenPage").swipeleft(function() {
+		$.mobile.changePage("#orangePage", {transition: "slide"});
+	});
+	
+	$("#greenPage").swiperight(function() {
+		$.mobile.changePage("#bluePage", {transition: "slide", reverse:true});
+	});
+	*/
+	
+});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+<div data-role="page" id="orangePage" class="page">
+ 	<div data-role="header">
+ 		<h2>오렌지 페이지</h2>
+ 	</div>
+ 
+ 	<div data-role="content" style="background-color:orange; height: 500px">
+ 		
+ 	</div>
+ 	
+ 	<div data-role="footer">
+ 	</div>
+</div>
+
+<div data-role="page" id="bluePage" class="page">
+ 	<div data-role="header">
+ 		<h2>파랑 페이지</h2>
+ 	</div>
+ 
+ 	<div data-role="content" style="background-color:blue; height: 500px">
+ 		
+ 	</div>
+ 	
+ 	<div data-role="footer">
+ 	</div>
+</div>
+
+<div data-role="page" id="greenPage" class="page">
+ 	<div data-role="header">
+ 		<h2>초록 페이지</h2>
+ 	</div>
+ 
+ 	<div data-role="content" style="background-color:green; height: 500px">
+ 		
+ 	</div>
+ 	
+ 	<div data-role="footer">
+ 	</div>
+</div>
+
+<div data-role="page" id="yellowPage" class="page">
+ 	<div data-role="header">
+ 		<h2>노랑 페이지</h2>
+ 	</div>
+ 
+ 	<div data-role="content" style="background-color:yellow; height: 500px">
+ 		
+ 	</div>
+ 	
+ 	<div data-role="footer">
+ 	</div>
+</div>
+
+<div data-role="page" id="pinkPage" class="page">
+ 	<div data-role="header">
+ 		<h2>분홍 페이지</h2>
+ 	</div>
+ 
+ 	<div data-role="content" style="background-color:pink; height: 500px">
+ 		
+ 	</div>
+ 	
+ 	<div data-role="footer">
+ 	</div>
+</div>
+</body>
+</html>

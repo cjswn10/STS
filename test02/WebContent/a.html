@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+   content="with=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+minimum-scale=1.0,
+user-scalable=no">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+$(document).on("mobileinit", function() {
+//on = bind 둘다 가능
+	$(document).bind('pagebeforeload', function(event, data) {
+		console.log("pagebeforeload");
+		console.log("url1:"+data.url);
+		console.log("url2:"+data.dataUrl);
+	});
+	
+	$(document).bind('pageload', function(event, data) {
+		console.log("pageload");
+		console.log("url1:"+data.url);
+		console.log("url2:"+data.dataUrl);
+	});
+	
+	$(document).bind('pageloadfailed', function(event, data) {
+		console.log("pageloadfailed");
+		
+	});
+})
+</script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<title>Insert title here</title>
+</head>
+<body>
+	<div data-role="page">
+		<div data-role="header">A</div>
+		<div data-role="content">
+			<a href="b.html" data-role="button">B이동</a>
+			<a href="c.html" data-role="button">C이동</a>
+			<a href="d.html" data-role="button">D이동</a>
+			<a href="e.html" data-role="button">E이동</a>
+		</div>
+		<div data-role="footer">  </div>
+	
+	</div>
+</body>
+</html>

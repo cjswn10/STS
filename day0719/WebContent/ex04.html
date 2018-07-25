@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+   content="with=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+minimum-scale=1.0,
+user-scalable=no">
+
+<link rel="shortcut icon" href="icon_heart.png">
+<link rel="apple-touch-icon" href="icon_heart.png">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript">
+$(function() {
+//수정해봐 페이지 넘기면 무한로딩....	
+
+	var pages = $(".page");
+	var len = $(".page").length;
+	
+	$.each(pages, function(i, p) {
+		$(this).find("h2").eq(0).html(i + "페이지");
+		console.log(i+"페이지");
+		
+		var next = ".page:eq("+(i+1)+")";
+		if(i == len-1) {
+			next =".page:eq("+ 0 +")";
+		}
+		/*
+		var before = i-1;
+		if(i == 0) {
+			before = len-1;
+		}
+		*/
+		var before = ".page:eq("+(i-1)+")";
+		if(i == 0) {
+			before = ".page:eq("+(len-1)+")";
+		}
+		console.log("before: " + before)
+		$(this).eq(i).swipeleft(function() {
+			$.mobile.changePage(next, {transition: "slide"});
+			
+		});	
+			
+	
+		$(this).swiperight(function() {
+//			$.mobile.changePage(".page:eq("+before+")", {transition: "slide", reverse:true});
+			$.mobile.changePage(before, {transition: "slide", reverse:true});
+		});
+
+			
+	});
+	
+	//$(".page").find("h2").eq(0).html("용용");
+	
+});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+<div data-role="page" id="orangePage" class="page">
+ 	<div data-role="header">
+ 		<h2>오렌지 페이지</h2>
+ 	</div>
+ 
+ 	<div data-role="content" style="background-color:orange; height: 500px">
+ 		
+ 	</div>
+ 	
+ 	<div data-role="footer">
+ 	</div>
+</div>
+
+<div data-role="page" id="bluePage" class="page">
+ 	<div data-role="header">
+ 		<h2>파랑 페이지</h2>
+ 	</div>
+ 
+ 	<div data-role="content" style="background-color:blue; height: 500px">
+ 		
+ 	</div>
+ 	
+ 	<div data-role="footer">
+ 	</div>
+</div>
+
+<div data-role="page" id="greenPage" class="page">
+ 	<div data-role="header">
+ 		<h2>초록 페이지</h2>
+ 	</div>
+ 
+ 	<div data-role="content" style="background-color:green; height: 500px">
+ 		
+ 	</div>
+ 	
+ 	<div data-role="footer">
+ 	</div>
+</div>
+
+<div data-role="page" id="yellowPage" class="page">
+ 	<div data-role="header">
+ 		<h2>노랑 페이지</h2>
+ 	</div>
+ 
+ 	<div data-role="content" style="background-color:yellow; height: 500px">
+ 		
+ 	</div>
+ 	
+ 	<div data-role="footer">
+ 	</div>
+</div>
+
+<div data-role="page" id="pinkPage" class="page">
+ 	<div data-role="header">
+ 		<h2>분홍 페이지</h2>
+ 	</div>
+ 
+ 	<div data-role="content" style="background-color:pink; height: 500px">
+ 		
+ 	</div>
+ 	
+ 	<div data-role="footer">
+ 	</div>
+</div>
+</body>
+</html>
